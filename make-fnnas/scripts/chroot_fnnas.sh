@@ -158,7 +158,7 @@ HOOK
     # Detect platform name (based on DTB folder)
     platform_name="$(ls -d /boot/dtb/*/ 2>/dev/null | head -n1 | xargs basename)"
     # Override if installed via DEBs
-    [[ -n "${debs_platform}" ]] && platform_name="${debs_platform}"
+    [[ "${debs_platform}" =~ ^(amlogic|allwinner|rockchip)$ ]] && platform_name="${debs_platform}"
     [[ -z "${platform_name}" ]] && error_msg "Cannot detect platform name from dtb folder."
     # Save to file for host script to read
     echo "platform_name='${platform_name}'" >>"${kernel_version_output}"
@@ -198,7 +198,7 @@ prepare_env
 # 2. Install dependencies (Need dpkg/apt working)
 check_dependencies
 # 3. Install DEBs if specified (This replaces the kernel)
-[[ -n "${debs_platform}" ]] && install_debs
+[[ "${debs_platform}" =~ ^(amlogic|allwinner|rockchip)$ ]] && install_debs
 # 4. Setup hooks and detect info (Detect the NEW kernel version)
 add_scripts
 # 5. Generate images
