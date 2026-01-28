@@ -4,15 +4,6 @@
 #=====================================================================================
 
 name: Build FnNAS Image
-on: [push]
-env:
-  KERNEL_TAGS: "v6.12.41"   # ← 在此处设置你需要的内核 tag 值
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: ./build.sh
 on:
   repository_dispatch:
   workflow_dispatch:
