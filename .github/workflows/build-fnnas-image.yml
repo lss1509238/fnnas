@@ -415,7 +415,7 @@ jobs:
 
       - name: Packaging fnnas
         if: ${{ steps.down.outputs.status == 'success' && !cancelled() }}
-        uses: lss1509238/fnnas@main
+        uses: ophub/fnnas@main
         with:
           fnnas_path: fnnas/*.img.xz
           fnnas_board: ${{ inputs.fnnas_board }}
